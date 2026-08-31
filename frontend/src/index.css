@@ -1,0 +1,104 @@
+@import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400;1,6..72,500&family=Manrope:wght@400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  margin: 0;
+  font-family: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #1f2b3a;
+  background: #ffffff;
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 213 34% 18%;
+    --card: 0 0% 100%;
+    --card-foreground: 213 34% 18%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 213 34% 18%;
+    --primary: 213 60% 31%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 213 60% 31%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 213 15% 45%;
+    --accent: 38 49% 49%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 213 20% 88%;
+    --input: 213 20% 88%;
+    --ring: 210 59% 44%;
+    --radius: 0.625rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+}
+
+.font-serif { font-family: 'Newsreader', Georgia, serif; }
+
+/* Eyebrow label */
+.eyebrow {
+  font-family: 'Manrope', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  font-weight: 700;
+  font-size: 0.75rem;
+  color: #b8933f;
+}
+
+/* Gold divider */
+.gold-rule {
+  width: 52px;
+  height: 2px;
+  background: linear-gradient(90deg, #b8933f, #d9bd7a);
+}
+
+/* Hide scrollbar for galleries */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* Reveal on scroll */
+.reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity 0.7s cubic-bezier(0.22,1,0.36,1), transform 0.7s cubic-bezier(0.22,1,0.36,1);
+  will-change: opacity, transform;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Subtle underline grow link */
+.nav-link {
+  position: relative;
+}
+.nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  height: 2px;
+  width: 0;
+  background: #b8933f;
+  transition: width 0.3s ease;
+}
+.nav-link:hover::after, .nav-link.active::after { width: 100%; }
+
+/* Dotted texture for dark sections */
+.dot-texture {
+  background-image: radial-gradient(rgba(255,255,255,0.06) 1px, transparent 1px);
+  background-size: 18px 18px;
+}
+
+html { scroll-behavior: smooth; }
