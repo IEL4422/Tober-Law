@@ -8,6 +8,7 @@ const nav = [
   { label: 'Home', to: '/' },
   { label: 'Practice Areas', to: '/practice-areas' },
   { label: 'Results', to: '/results' },
+  { label: 'Blog', to: '/blog' },
   { label: 'About', to: '/about' },
   { label: 'Contact', to: '/contact' },
 ];

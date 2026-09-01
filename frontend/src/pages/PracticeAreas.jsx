@@ -1,14 +1,28 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { ArrowRight, Check } from 'lucide-react';
 import { practiceAreas, firm } from '../mock';
 import Reveal from '../components/Reveal';
 import CTASection from '../components/CTASection';
+import Seo from '../components/Seo';
 
 const PracticeAreas = () => {
-  const navigate = useNavigate();
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://tober-law.com/' },
+      { '@type': 'ListItem', position: 2, name: 'Practice Areas', item: 'https://tober-law.com/practice-areas' },
+    ],
+  };
   return (
     <div>
+      <Seo
+        title={`Practice Areas | Chicago Injury & Civil Rights | ${firm.name}`}
+        description="Chicago personal injury and civil rights practice areas: car and truck accidents, premises liability, construction and manufacturing injuries, police and ICE misconduct, and negligent security."
+        path="/practice-areas"
+        jsonLd={jsonLd}
+      />
       {/* Page hero */}
       <section className="relative pt-[74px] bg-[#16304f] dot-texture overflow-hidden">
         <div className="absolute -top-24 -right-16 w-96 h-96 rounded-full bg-[#2e6fb0]/30 blur-3xl" />
@@ -33,18 +47,18 @@ const PracticeAreas = () => {
               const Icon = p.icon;
               return (
                 <Reveal key={p.slug} delay={(i % 2) * 90}>
-                  <div className="group flex gap-5 h-full bg-white rounded-2xl p-7 border border-[#e8eef5] shadow-[0_2px_16px_rgba(32,73,127,0.04)] hover:shadow-[0_18px_44px_rgba(32,73,127,0.13)] hover:border-[#d9bd7a]/40 transition-all duration-300">
+                  <Link to={`/practice-areas/${p.slug}`} className="group flex gap-5 h-full bg-white rounded-2xl p-7 border border-[#e8eef5] shadow-[0_2px_16px_rgba(32,73,127,0.04)] hover:shadow-[0_18px_44px_rgba(32,73,127,0.13)] hover:border-[#d9bd7a]/40 hover:-translate-y-1 transition-all duration-300">
                     <div className="shrink-0 w-14 h-14 rounded-xl bg-[#eaf1f9] flex items-center justify-center group-hover:bg-[#20497f] transition-colors duration-300">
                       <Icon className="w-7 h-7 text-[#2e6fb0] group-hover:text-[#d9bd7a] transition-colors duration-300" />
                     </div>
                     <div>
                       <h3 className="font-serif text-2xl font-semibold text-[#16304f]">{p.name}</h3>
                       <p className="mt-2.5 text-[15px] text-[#5c6b7d] leading-relaxed">{p.desc}</p>
-                      <button onClick={() => navigate('/contact')} className="mt-4 inline-flex items-center gap-1.5 text-[14px] font-bold text-[#20497f] hover:text-[#b8933f] transition-colors">
-                        Discuss your case <ArrowRight className="w-4 h-4" />
-                      </button>
+                      <span className="mt-4 inline-flex items-center gap-1.5 text-[14px] font-bold text-[#20497f] group-hover:text-[#b8933f] transition-colors">
+                        Learn more <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+                      </span>
                     </div>
-                  </div>
+                  </Link>
                 </Reveal>
               );
             })}

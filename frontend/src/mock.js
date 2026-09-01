@@ -127,3 +127,47 @@ export const hours = [
   ['Saturday', 'Closed'],
   ['Sunday', 'Closed'],
 ];
+
+// Per-practice-area detail content. resultCategories maps to the `category` field on results.
+export const practiceDetails = {
+  'car-accidents': {
+    overview: "When a careless or impaired driver upends your life, medical bills and lost income stack up fast. We take on the insurance companies directly so you can focus on recovery \u2014 pursuing full compensation for serious collisions, hit-and-runs, and wrongful death across Chicagoland.",
+    handles: ['Serious and high-speed collisions', 'Drunk and distracted driving crashes', 'Rideshare (Uber & Lyft) accidents', 'Hit-and-run and uninsured motorist claims', 'Wrongful death from fatal crashes'],
+    resultCategories: ['Car Accident', 'Motor Vehicle Collision'],
+  },
+  'trucking-accidents': {
+    overview: "Crashes involving commercial trucks and semis cause some of the most catastrophic injuries on the road \u2014 and they involve trucking companies, insurers, and federal regulations most lawyers rarely handle. We move quickly to preserve evidence and hold every responsible party accountable.",
+    handles: ['Semi-truck and tractor-trailer collisions', 'Delivery and freight vehicle crashes', 'Rear-end and highway wrecks', 'Driver fatigue and hours-of-service violations', 'Improper loading and maintenance failures'],
+    resultCategories: ['Trucking Accident'],
+  },
+  'premises-liability': {
+    overview: "Property owners have a duty to keep their premises reasonably safe. When they cut corners, people get hurt. We handle slip-and-falls, dangerous conditions, and unsafe-property claims against negligent owners, landlords, and businesses.",
+    handles: ['Slip, trip, and fall injuries', 'Unsafe or defective property conditions', 'Ceiling collapses and structural failures', 'Retail and grocery-store incidents', 'Failure to warn of known hazards'],
+    resultCategories: ['Premises Liability'],
+  },
+  'construction-injuries': {
+    overview: "Construction sites are among the most dangerous workplaces in Illinois. When falls, equipment failures, or unsafe conditions cause serious injury, we pursue every available claim \u2014 including third-party negligence that goes beyond workers' compensation.",
+    handles: ['Falls from heights, roofs, and ladders', 'Scaffolding and equipment failures', 'Electrocution and crush injuries', 'Falling-object and debris injuries', 'Unsafe job-site conditions'],
+    resultCategories: ['Construction Injury'],
+  },
+  'manufacturing-injuries': {
+    overview: "Factory and industrial work exposes laborers to heavy machinery and hazardous conditions. When negligence or a defective product causes a life-changing injury, we fight for the full recovery you deserve.",
+    handles: ['Punch-press and machine injuries', 'Defective industrial products', 'Amputations and crush injuries', 'Repetitive-trauma and equipment failures', 'Unsafe factory conditions'],
+    resultCategories: ['Manufacturing Injury'],
+  },
+  'police-misconduct': {
+    overview: "When those sworn to protect abuse their power, we hold them accountable. We litigate civil rights claims against officers and departments \u2014 from excessive force to false arrest \u2014 and have taken these fights all the way to the Illinois Supreme Court.",
+    handles: ['Excessive and unreasonable force', 'False arrest and unlawful detention', 'Civil rights (Section 1983) violations', 'Police-chase and pursuit injuries', 'Challenges to immunity defenses'],
+    resultCategories: ['Appellate Win'],
+  },
+  'ice-misconduct': {
+    overview: "Immigration enforcement does not suspend a person's civil rights. We represent individuals harmed by unlawful detention and enforcement overreach, pursuing accountability for constitutional violations.",
+    handles: ['Unlawful and prolonged detention', 'Excessive force during enforcement', 'Due-process and civil rights violations', 'Wrongful detainer claims', 'Enforcement-overreach matters'],
+    resultCategories: [],
+  },
+  'negligent-security': {
+    overview: "Businesses and property owners must protect visitors from foreseeable harm. When inadequate security enables an assault or attack, we pursue the owners whose negligence made it possible.",
+    handles: ['Assaults enabled by poor security', 'Inadequate lighting and broken locks', 'Failure to provide guards or cameras', 'Apartment and parking-lot attacks', 'Animal attacks on unsafe premises'],
+    resultCategories: ['Negligent Security'],
+  },
+};

@@ -4,10 +4,39 @@ import { ArrowRight, ChevronLeft, ChevronRight, Scale, CheckCircle2 } from 'luci
 import { badges, practiceAreas, results, galleryImages, firm } from '../mock';
 import Reveal from '../components/Reveal';
 import CTASection from '../components/CTASection';
+import Seo from '../components/Seo';
 
 const Home = () => {
   const navigate = useNavigate();
   const galleryRef = useRef(null);
+
+  const homeJsonLd = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'LegalService',
+      name: firm.name,
+      description: firm.blurb,
+      url: 'https://tober-law.com/',
+      email: firm.email,
+      areaServed: 'Chicago, Illinois',
+      priceRange: 'Contingency fee \u2014 $0 upfront',
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: '125 S. Wacker Dr., Ste. 300',
+        addressLocality: 'Chicago',
+        addressRegion: 'IL',
+        postalCode: '60606',
+        addressCountry: 'US',
+      },
+      founder: { '@type': 'Attorney', name: firm.attorney },
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'WebSite',
+      name: firm.name,
+      url: 'https://tober-law.com/',
+    },
+  ];
 
   const scrollGallery = (dir) => {
     const el = galleryRef.current;
@@ -18,6 +47,12 @@ const Home = () => {
 
   return (
     <div>
+      <Seo
+        title={`${firm.name} | Chicago Personal Injury & Civil Rights Attorney`}
+        description="Chicago personal injury and civil rights trial lawyer Cameron J. Tober. Serious injury litigation handled personally \u2014 $0 upfront, direct attorney access, serving all of Illinois."
+        path="/"
+        jsonLd={homeJsonLd}
+      />
       {/* HERO */}
       <section className="relative min-h-[92vh] flex items-center overflow-hidden">
         <video
@@ -91,7 +126,7 @@ const Home = () => {
               return (
                 <Reveal key={p.slug} delay={(i % 4) * 80}>
                   <Link
-                    to="/practice-areas"
+                    to={`/practice-areas/${p.slug}`}
                     className="group block h-full bg-white rounded-2xl p-6 border border-[#e8eef5] shadow-[0_2px_16px_rgba(32,73,127,0.04)] hover:shadow-[0_18px_44px_rgba(32,73,127,0.14)] hover:-translate-y-1 transition-all duration-300"
                   >
                     <div className="w-12 h-12 rounded-xl bg-[#eaf1f9] flex items-center justify-center group-hover:bg-[#20497f] transition-colors duration-300">

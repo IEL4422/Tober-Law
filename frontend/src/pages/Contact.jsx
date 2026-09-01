@@ -3,8 +3,30 @@ import { Mail, MapPin, MessageSquare, Clock, Paperclip, Send, CheckCircle2 } fro
 import { toast } from 'sonner';
 import { firm, hours, referralBlocks } from '../mock';
 import Reveal from '../components/Reveal';
+import Seo from '../components/Seo';
 
 const initialForm = { name: '', email: '', phone: '', message: '' };
+
+const contactJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ContactPage',
+  name: `Contact ${firm.name}`,
+  description: 'Free, confidential consultation with a Chicago personal injury and civil rights attorney.',
+  url: 'https://tober-law.com/contact',
+  mainEntity: {
+    '@type': 'LegalService',
+    name: firm.name,
+    email: firm.email,
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: '125 S. Wacker Dr., Ste. 300',
+      addressLocality: 'Chicago',
+      addressRegion: 'IL',
+      postalCode: '60606',
+      addressCountry: 'US',
+    },
+  },
+};
 
 const Contact = () => {
   const [form, setForm] = useState(initialForm);
@@ -33,6 +55,12 @@ const Contact = () => {
 
   return (
     <div>
+      <Seo
+        title={`Free Consultation | Contact ${firm.name}`}
+        description="Tell us about your case. Free, confidential consultation with Chicago injury and civil rights attorney Cameron J. Tober \u2014 no cost, no obligation. Text or call anytime."
+        path="/contact"
+        jsonLd={contactJsonLd}
+      />
       {/* Page hero */}
       <section className="relative pt-[74px] bg-[#16304f] dot-texture overflow-hidden">
         <div className="absolute -top-24 -right-16 w-96 h-96 rounded-full bg-[#2e6fb0]/30 blur-3xl" />

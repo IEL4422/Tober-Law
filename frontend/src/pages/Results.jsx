@@ -1,8 +1,9 @@
 import React, { useMemo, useState } from 'react';
-import { Gavel } from 'lucide-react';
-import { results } from '../mock';
+import { Gavel, Search, X } from 'lucide-react';
+import { results, firm } from '../mock';
 import Reveal from '../components/Reveal';
 import CTASection from '../components/CTASection';
+import Seo from '../components/Seo';
 
 const Results = () => {
   const categories = useMemo(() => {
@@ -10,11 +11,34 @@ const Results = () => {
     return set;
   }, []);
   const [active, setActive] = useState('All');
+  const [query, setQuery] = useState('');
 
-  const filtered = active === 'All' ? results : results.filter((r) => r.category === active);
+  const filtered = useMemo(() => {
+    const q = query.trim().toLowerCase();
+    return results.filter((r) => {
+      const matchesCat = active === 'All' || r.category === active;
+      const haystack = `${r.desc} ${r.category} ${r.figure || 'appeal appellate verdict'}`.toLowerCase();
+      const matchesQuery = q === '' || haystack.includes(q);
+      return matchesCat && matchesQuery;
+    });
+  }, [active, query]);
+
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: `Case Results | ${firm.name}`,
+    description: 'Verdicts and settlements obtained in Illinois personal injury and civil rights cases.',
+    url: 'https://tober-law.com/results',
+  };
 
   return (
     <div>
+      <Seo
+        title={`Case Results | Verdicts & Settlements | ${firm.name}`}
+        description="Real Illinois personal injury and civil rights case results \u2014 from a $12M highway wrongful-death settlement to construction, trucking, premises, and civil rights recoveries. Prior results do not guarantee future ones."
+        path="/results"
+        jsonLd={jsonLd}
+      />
       {/* Page hero */}
       <section className="relative pt-[74px] bg-[#16304f] dot-texture overflow-hidden">
         <div className="absolute -bottom-24 -left-16 w-96 h-96 rounded-full bg-[#2e6fb0]/30 blur-3xl" />
@@ -31,9 +55,28 @@ const Results = () => {
         </div>
       </section>
 
-      {/* Filters */}
+      {/* Filters + Search */}
       <section className="bg-white pt-12">
         <div className="max-w-7xl mx-auto px-5 sm:px-8">
+          <div className="relative max-w-xl mb-6">
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[#9aa8b8]" />
+            <input
+              type="text"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              placeholder='Search results by keyword — try "truck", "fall", or "worker"'
+              className="w-full rounded-full border border-[#dfe7f0] bg-white pl-12 pr-11 py-3.5 text-[15px] text-[#1f2b3a] placeholder:text-[#9aa8b8] focus:outline-none focus:ring-2 focus:ring-[#2e6fb0]/40 focus:border-[#2e6fb0] transition"
+            />
+            {query && (
+              <button
+                onClick={() => setQuery('')}
+                aria-label="Clear search"
+                className="absolute right-3 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full flex items-center justify-center text-[#8593a3] hover:bg-[#f0f5fa] hover:text-[#20497f] transition"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            )}
+          </div>
           <div className="flex flex-wrap gap-2.5">
             {categories.map((c) => (
               <button
@@ -49,12 +92,25 @@ const Results = () => {
               </button>
             ))}
           </div>
+          <p className="mt-5 text-[13.5px] text-[#8593a3]">
+            Showing <span className="font-bold text-[#20497f]">{filtered.length}</span> of {results.length} results
+          </p>
         </div>
       </section>
 
       {/* Grid */}
       <section className="bg-white py-12 md:py-16">
         <div className="max-w-7xl mx-auto px-5 sm:px-8">
+          {filtered.length === 0 ? (
+            <div className="rounded-2xl border border-[#e8eef5] bg-[#f5f9fd] p-10 text-center">
+              <Search className="w-8 h-8 text-[#c3d2e3] mx-auto" />
+              <h3 className="font-serif text-2xl font-semibold text-[#16304f] mt-4">No results match your search</h3>
+              <p className="mt-2 text-[15px] text-[#5c6b7d]">Try a different keyword or clear the filters to see every case result.</p>
+              <button onClick={() => { setQuery(''); setActive('All'); }} className="mt-5 inline-flex items-center rounded-full bg-[#20497f] text-white px-6 py-3 text-[14px] font-bold hover:bg-[#1a3c6a] transition-colors">
+                Reset filters
+              </button>
+            </div>
+          ) : (
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {filtered.map((r, i) => (
               <Reveal key={`${r.category}-${i}`} delay={(i % 3) * 70}>
@@ -75,6 +131,7 @@ const Results = () => {
               </Reveal>
             ))}
           </div>
+          )}
           <p className="mt-10 text-[13px] text-[#8593a3]">Prior results do not guarantee a similar outcome. Every case is different.</p>
         </div>
       </section>

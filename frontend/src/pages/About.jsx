@@ -4,11 +4,28 @@ import { ArrowRight } from 'lucide-react';
 import { aboutBio, badges, firm, attorneyHeadshot } from '../mock';
 import Reveal from '../components/Reveal';
 import CTASection from '../components/CTASection';
+import Seo from '../components/Seo';
 
 const About = () => {
   const navigate = useNavigate();
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Attorney',
+    name: firm.attorney,
+    jobTitle: 'Founder & Trial Lawyer',
+    worksFor: { '@type': 'LegalService', name: firm.name },
+    description: aboutBio.join(' '),
+    areaServed: 'Chicago, Illinois',
+    url: 'https://tober-law.com/about',
+  };
   return (
     <div>
+      <Seo
+        title={`About ${firm.attorney} | Chicago Trial Lawyer | ${firm.name}`}
+        description="Meet Cameron J. Tober, founder of Tober Law \u2014 a Chicago trial lawyer with deep catastrophic-injury and civil-rights experience who handles every case personally."
+        path="/about"
+        jsonLd={jsonLd}
+      />
       {/* Page hero */}
       <section className="relative pt-[74px] bg-[#16304f] dot-texture overflow-hidden">
         <div className="absolute -top-24 -right-16 w-96 h-96 rounded-full bg-[#2e6fb0]/30 blur-3xl" />
