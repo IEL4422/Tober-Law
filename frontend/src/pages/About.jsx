@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ArrowRight } from 'lucide-react';
-import { aboutBio, badges, firm, attorneyHeadshot } from '../mock';
+import { ArrowRight, Image as ImageIcon } from 'lucide-react';
+import { aboutBio, badges, firm } from '../mock';
 import Reveal from '../components/Reveal';
 import CTASection from '../components/CTASection';
 import Seo from '../components/Seo';
@@ -48,13 +48,14 @@ const About = () => {
           <Reveal className="lg:col-span-2">
             <div className="relative">
               <div className="absolute -top-4 -left-4 w-full h-full rounded-2xl border-2 border-[#d9bd7a]/40" />
-              <img
-                src={attorneyHeadshot}
-                alt={firm.attorney}
-                className="relative rounded-2xl w-full h-[440px] object-cover object-top shadow-[0_20px_50px_rgba(32,73,127,0.18)]"
-              />
+              <div className="relative rounded-2xl w-full h-[440px] bg-[#f0f5fa] border border-dashed border-[#c3d2e3] flex flex-col items-center justify-center text-center shadow-[0_20px_50px_rgba(32,73,127,0.12)]">
+                <div className="w-16 h-16 rounded-full bg-[#e2ebf5] flex items-center justify-center">
+                  <ImageIcon className="w-7 h-7 text-[#9ab0c8]" />
+                </div>
+                <p className="mt-4 text-[14px] font-semibold text-[#7488a0]">Attorney photo</p>
+                <p className="mt-1 text-[12px] text-[#9aa8b8]">Coming soon</p>
+              </div>
             </div>
-            <p className="mt-4 text-[12px] text-[#98a5b5] italic">Placeholder portrait — attorney headshot to be added.</p>
           </Reveal>
 
           <Reveal delay={120} className="lg:col-span-3">

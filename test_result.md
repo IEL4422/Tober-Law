@@ -100,4 +100,44 @@
 
 #====================================================================================================
 # Testing Data - Main Agent and testing sub agent both should log testing data below this section
-#====================================================================================================
+#====================================================================================================user_problem_statement: "Tober Law website — add contact-form inquiry backend that stores inquiries in MongoDB and emails firm@tober-law.com via Resend."
+
+backend:
+  - task: "Contact inquiry endpoint (POST/GET /api/contact) with MongoDB storage + Resend email"
+    implemented: true
+    working: true
+    file: "backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+        -working: "NA"
+        -agent: "main"
+        -comment: "Added InquiryCreate/Inquiry models, POST /api/contact (validates email, stores to db.inquiries with created_at ISO string, attempts Resend email, sets email_sent flag), and GET /api/contact (returns list sorted by created_at desc, excludes _id). RESEND_API_KEY currently empty so email_sent should be false but inquiry must still persist and return 200. Validate: valid payload returns 200 with Inquiry incl id+email_sent=false; invalid email returns 422; GET returns stored inquiries."
+        -working: true
+        -agent: "testing"
+        -comment: "Fixed critical bug: logger was used before definition (moved logging config before _send_inquiry_email function). All 5 tests PASSED: (1) GET /api/ returns Hello World ✅ (2) POST /api/contact with valid data returns 200 with id, email, email_sent=false, created_at, all fields correct, no _id leak ✅ (3) POST /api/contact with invalid email returns 422 validation error ✅ (4) POST /api/contact with minimal payload (email only) returns 200 with proper defaults ✅ (5) GET /api/contact returns array sorted by created_at desc, no _id field, correct structure ✅. MongoDB persistence confirmed. Email not sent (RESEND_API_KEY empty as expected)."
+
+metadata:
+  created_by: "main_agent"
+  version: "1.2"
+  test_sequence: 2
+  run_ui: false
+
+test_plan:
+  current_focus:
+    - "Contact inquiry endpoint (POST/GET /api/contact) with MongoDB storage + Resend email"
+  stuck_tasks: []
+  test_all: false
+  test_priority: "high_first"
+
+agent_communication:
+    -agent: "main"
+    -message: "Please test POST /api/contact and GET /api/contact. RESEND_API_KEY is intentionally empty (email not configured yet), so email_sent should be false, but the inquiry MUST still be saved to MongoDB and the endpoint MUST return 200. Also verify 422 on invalid/missing email. Do not test email delivery itself."
+    -agent: "testing"
+    -message: "Backend testing complete. Fixed critical logger initialization bug (logger used before definition). All 5 contact inquiry endpoint tests passed successfully. POST /api/contact correctly validates email (422 on invalid), accepts valid/minimal payloads (200), persists to MongoDB with email_sent=false (RESEND_API_KEY empty as expected), returns proper response structure with no _id leak. GET /api/contact returns sorted array (created_at desc) with correct structure. Ready for main agent to summarize and finish."
+
+    -agent: "testing"
+    -message: "All /api/contact tests passed (valid=200 with email_sent=false, invalid email=422, minimal=200, GET returns sorted array without _id). Fixed a logger-ordering bug in server.py during testing. Backend healthy."
+    -agent: "main"
+    -message: "Backend contact inquiry endpoint verified working. RESEND_API_KEY still empty pending user's Resend credentials; inquiries persist to MongoDB and email activates once key + verified domain are added. Contact form wired to POST /api/contact."

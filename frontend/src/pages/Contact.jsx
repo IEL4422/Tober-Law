@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import { Mail, MapPin, MessageSquare, Clock, Paperclip, Send, CheckCircle2 } from 'lucide-react';
 import { toast } from 'sonner';
 import { firm, hours, referralBlocks } from '../mock';
 import Reveal from '../components/Reveal';
 import Seo from '../components/Seo';
+
+const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
 
 const initialForm = { name: '', email: '', phone: '', message: '' };
 
@@ -32,25 +35,46 @@ const Contact = () => {
   const [form, setForm] = useState(initialForm);
   const [files, setFiles] = useState([]);
   const [submitted, setSubmitted] = useState(false);
+  const [sending, setSending] = useState(false);
 
   const onChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
     if (!form.email) {
       toast.error('Please enter your email so we can reach you.');
       return;
     }
-    // Frontend-only mock submission (stored to browser for now)
+    setSending(true);
+    // Backup to browser storage so nothing is lost even if the request fails.
     try {
       const prev = JSON.parse(localStorage.getItem('tober_leads') || '[]');
       prev.push({ ...form, files: files.map((f) => f.name), at: new Date().toISOString() });
       localStorage.setItem('tober_leads', JSON.stringify(prev));
     } catch (_) {}
-    setSubmitted(true);
-    toast.success('Thanks — your message has been received. Cam will get right back to you.');
-    setForm(initialForm);
-    setFiles([]);
+
+    try {
+      await axios.post(`${API}/contact`, {
+        name: form.name,
+        email: form.email,
+        phone: form.phone,
+        message: form.message,
+        attachments: files.map((f) => f.name),
+      });
+      setSubmitted(true);
+      toast.success('Thanks — your message has been received. Cam will get right back to you.');
+      setForm(initialForm);
+      setFiles([]);
+    } catch (err) {
+      const status = err?.response?.status;
+      if (status === 422) {
+        toast.error('Please enter a valid email address.');
+      } else {
+        toast.error('Something went wrong sending your message. Please try again or email us directly.');
+      }
+    } finally {
+      setSending(false);
+    }
   };
 
   return (
@@ -125,9 +149,9 @@ const Contact = () => {
                     <span className="text-[#8593a3]">Attachments ({files.length})</span>
                     <input type="file" multiple className="hidden" onChange={(e) => setFiles(Array.from(e.target.files || []))} />
                   </label>
-                  <button type="submit" className="group w-full inline-flex items-center justify-center gap-2.5 rounded-full bg-[#20497f] text-white px-7 py-4 text-[15px] font-bold shadow-[0_10px_30px_rgba(32,73,127,0.25)] hover:bg-[#1a3c6a] transition-all duration-300">
+                  <button type="submit" disabled={sending} className="group w-full inline-flex items-center justify-center gap-2.5 rounded-full bg-[#20497f] text-white px-7 py-4 text-[15px] font-bold shadow-[0_10px_30px_rgba(32,73,127,0.25)] hover:bg-[#1a3c6a] transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed">
                     <Send className="w-4 h-4 text-[#d9bd7a] group-hover:translate-x-0.5 transition-transform" />
-                    Send
+                    {sending ? 'Sending…' : 'Send'}
                   </button>
                   <p className="text-[12px] text-[#98a5b5] leading-relaxed">By submitting, you agree to be contacted about your inquiry. This does not create an attorney-client relationship.</p>
                 </form>
