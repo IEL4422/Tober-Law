@@ -19,12 +19,12 @@ const PracticeAreas = () => {
     <div>
       <Seo
         title={`Practice Areas | Chicago Injury & Civil Rights | ${firm.name}`}
-        description="Chicago personal injury and civil rights practice areas: car and truck accidents, premises liability, construction and manufacturing injuries, police and ICE misconduct, and negligent security."
+        description="Illinois & Missouri personal injury and civil rights practice areas: car and truck accidents, premises liability, construction and manufacturing injuries, products liability, dog bites, medical malpractice and nursing home neglect, police and ICE misconduct, and negligent security."
         path="/practice-areas"
         jsonLd={jsonLd}
       />
       {/* Page hero */}
-      <section className="relative pt-[74px] bg-[#16304f] dot-texture overflow-hidden">
+      <section className="relative pt-[96px] bg-[#16304f] dot-texture overflow-hidden">
         <div className="absolute -top-24 -right-16 w-96 h-96 rounded-full bg-[#2e6fb0]/30 blur-3xl" />
         <div className="relative max-w-7xl mx-auto px-5 sm:px-8 py-20 md:py-24">
           <Reveal className="max-w-3xl">
@@ -33,7 +33,7 @@ const PracticeAreas = () => {
               Practice Areas
             </h1>
             <p className="mt-6 text-lg text-white/75 leading-relaxed">
-              Focused, high-stakes injury and civil rights representation — handled personally by {firm.attorney}, never handed down to a junior associate.
+              Focused, high-stakes injury and civil rights representation — handled personally by {firm.attorney}, never handed down. Serving clients across Illinois and Missouri.
             </p>
           </Reveal>
         </div>
@@ -72,7 +72,7 @@ const PracticeAreas = () => {
                 <h3 className="font-serif text-2xl md:text-3xl font-semibold text-[#16304f] mt-3">Handled personally, start to finish</h3>
               </div>
               <ul className="space-y-3">
-                {['Direct access to the attorney\u2019s personal cell','No fees unless we win — contingency only','Real trial experience, not just settlement mills','Serving all of Illinois'].map((t) => (
+                {['Direct access to the attorney\u2019s personal cell','No fees unless we win — contingency only','Real trial experience, not just settlement mills','Serving all of Illinois and Missouri'].map((t) => (
                   <li key={t} className="flex items-start gap-3 text-[15px] text-[#3a4a5e]">
                     <span className="mt-0.5 w-5 h-5 rounded-full bg-[#20497f] flex items-center justify-center shrink-0">
                       <Check className="w-3 h-3 text-[#d9bd7a]" />

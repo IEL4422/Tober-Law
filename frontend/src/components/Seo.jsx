@@ -14,7 +14,7 @@ const Seo = ({
   keywords,
   jsonLd,
 }) => {
-  const fullTitle = title ? `${title}` : `${SITE} \u2014 Chicago Personal Injury & Civil Rights Attorney`;
+  const fullTitle = title ? `${title}` : `${SITE} \u2014 Illinois & Missouri Personal Injury & Civil Rights Attorney`;
   const url = `${BASE_URL}${path}`;
   const ld = Array.isArray(jsonLd) ? jsonLd : jsonLd ? [jsonLd] : [];
 

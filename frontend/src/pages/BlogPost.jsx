@@ -167,7 +167,7 @@ const BlogPost = () => {
       />
 
       {/* Hero */}
-      <section className="relative pt-[74px] bg-[#16304f] dot-texture overflow-hidden">
+      <section className="relative pt-[96px] bg-[#16304f] dot-texture overflow-hidden">
         <div className="absolute -top-24 -right-16 w-96 h-96 rounded-full bg-[#2e6fb0]/30 blur-3xl" />
         <div className="relative max-w-3xl mx-auto px-5 sm:px-8 py-16 md:py-20">
           <Link to="/blog" className="inline-flex items-center gap-2 text-[13.5px] font-semibold text-white/60 hover:text-white transition-colors mb-8">

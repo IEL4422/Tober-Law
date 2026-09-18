@@ -23,7 +23,7 @@ const PracticeAreaDetail = () => {
     '@type': 'LegalService',
     name: `${area.name} \u2014 ${firm.name}`,
     description: detail.overview,
-    areaServed: 'Chicago, Illinois',
+    areaServed: 'Illinois and Missouri',
     url: `${BASE}/practice-areas/${slug}`,
     provider: { '@type': 'Attorney', name: firm.attorney },
   };
@@ -38,7 +38,7 @@ const PracticeAreaDetail = () => {
       />
 
       {/* Hero */}
-      <section className="relative pt-[74px] bg-[#16304f] dot-texture overflow-hidden">
+      <section className="relative pt-[96px] bg-[#16304f] dot-texture overflow-hidden">
         <div className="absolute -top-24 -right-16 w-96 h-96 rounded-full bg-[#2e6fb0]/30 blur-3xl" />
         <div className="relative max-w-7xl mx-auto px-5 sm:px-8 py-20 md:py-24">
           {/* Breadcrumb */}

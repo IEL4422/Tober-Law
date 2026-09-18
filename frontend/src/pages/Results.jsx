@@ -35,12 +35,12 @@ const Results = () => {
     <div>
       <Seo
         title={`Case Results | Verdicts & Settlements | ${firm.name}`}
-        description="Real Illinois personal injury and civil rights case results \u2014 from a $12M highway wrongful-death settlement to construction, trucking, premises, and civil rights recoveries. Prior results do not guarantee future ones."
+        description="Real Illinois & Missouri personal injury and civil rights case results \u2014 from a $12M highway wrongful-death settlement to construction, trucking, premises, and civil rights recoveries. Prior results do not guarantee future ones."
         path="/results"
         jsonLd={jsonLd}
       />
       {/* Page hero */}
-      <section className="relative pt-[74px] bg-[#16304f] dot-texture overflow-hidden">
+      <section className="relative pt-[96px] bg-[#16304f] dot-texture overflow-hidden">
         <div className="absolute -bottom-24 -left-16 w-96 h-96 rounded-full bg-[#2e6fb0]/30 blur-3xl" />
         <div className="relative max-w-7xl mx-auto px-5 sm:px-8 py-20 md:py-24">
           <Reveal className="max-w-3xl">
@@ -49,7 +49,7 @@ const Results = () => {
               Results that speak for themselves
             </h1>
             <p className="mt-6 text-lg text-white/75 leading-relaxed">
-              Every result below reflects a real client whose life was disrupted by someone else's negligence — and a case handled personally, start to finish. Each case has its own unique set of circumstances; prior results do not guarantee future ones.
+              Every result below reflects a real client whose life was disrupted by someone else's negligence. Each case has its own unique set of circumstances; prior results do not guarantee future ones.
             </p>
           </Reveal>
         </div>

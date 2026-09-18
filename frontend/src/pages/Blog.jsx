@@ -31,13 +31,13 @@ const Blog = () => {
     <div>
       <Seo
         title={`Personal Injury & Civil Rights Blog | ${firm.name}`}
-        description="Clear, practical guides on Illinois personal injury and civil rights law — car accidents, construction injuries, deadlines, contingency fees, and more — from a Chicago trial attorney."
+        description="Clear, practical guides on Illinois & Missouri personal injury and civil rights law — car accidents, construction injuries, deadlines, contingency fees, and more — from a trial attorney."
         path="/blog"
         jsonLd={jsonLd}
       />
 
       {/* Hero */}
-      <section className="relative pt-[74px] bg-[#16304f] dot-texture overflow-hidden">
+      <section className="relative pt-[96px] bg-[#16304f] dot-texture overflow-hidden">
         <div className="absolute -bottom-24 -left-16 w-96 h-96 rounded-full bg-[#2e6fb0]/30 blur-3xl" />
         <div className="relative max-w-7xl mx-auto px-5 sm:px-8 py-20 md:py-24">
           <Reveal className="max-w-3xl">

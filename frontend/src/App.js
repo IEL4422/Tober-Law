@@ -12,6 +12,7 @@ import About from './pages/About';
 import Contact from './pages/Contact';
 import Blog from './pages/Blog';
 import BlogPost from './pages/BlogPost';
+import AttorneyReferrals from './pages/AttorneyReferrals';
 import { Toaster } from './components/ui/sonner';
 
 const ScrollToTop = () => {
@@ -39,6 +40,7 @@ function App() {
               <Route path="/contact" element={<Contact />} />
               <Route path="/blog" element={<Blog />} />
               <Route path="/blog/:slug" element={<BlogPost />} />
+              <Route path="/attorney-referrals" element={<AttorneyReferrals />} />
             </Routes>
           </main>
           <Footer />

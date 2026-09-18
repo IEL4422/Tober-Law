@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ArrowRight, Image as ImageIcon } from 'lucide-react';
+import { ArrowRight, Image as ImageIcon, Play } from 'lucide-react';
 import { aboutBio, badges, firm } from '../mock';
 import Reveal from '../components/Reveal';
 import CTASection from '../components/CTASection';
@@ -15,19 +15,19 @@ const About = () => {
     jobTitle: 'Founder & Trial Lawyer',
     worksFor: { '@type': 'LegalService', name: firm.name },
     description: aboutBio.join(' '),
-    areaServed: 'Chicago, Illinois',
+    areaServed: 'Illinois and Missouri',
     url: 'https://tober-law.com/about',
   };
   return (
     <div>
       <Seo
         title={`About ${firm.attorney} | Chicago Trial Lawyer | ${firm.name}`}
-        description="Meet Cameron J. Tober, founder of Tober Law \u2014 a Chicago trial lawyer with deep catastrophic-injury and civil-rights experience who handles every case personally."
+        description="Meet Cameron J. Tober, founder of Tober Law \u2014 an Illinois & Missouri trial lawyer with deep catastrophic-injury and civil-rights experience who handles every case personally."
         path="/about"
         jsonLd={jsonLd}
       />
       {/* Page hero */}
-      <section className="relative pt-[74px] bg-[#16304f] dot-texture overflow-hidden">
+      <section className="relative pt-[96px] bg-[#16304f] dot-texture overflow-hidden">
         <div className="absolute -top-24 -right-16 w-96 h-96 rounded-full bg-[#2e6fb0]/30 blur-3xl" />
         <div className="relative max-w-7xl mx-auto px-5 sm:px-8 py-20 md:py-24">
           <Reveal className="max-w-3xl">
@@ -42,8 +42,28 @@ const About = () => {
         </div>
       </section>
 
+      {/* Intro video placeholder */}
+      <section className="bg-white pt-14 md:pt-20">
+        <div className="max-w-4xl mx-auto px-5 sm:px-8">
+          <Reveal>
+            <div className="relative aspect-video w-full rounded-2xl bg-[#f0f5fa] border border-dashed border-[#c3d2e3] flex flex-col items-center justify-center text-center shadow-[0_20px_50px_rgba(32,73,127,0.10)] overflow-hidden">
+              <div className="absolute -top-16 -right-16 w-56 h-56 rounded-full bg-[#2e6fb0]/10 blur-3xl" />
+              <button
+                type="button"
+                aria-label="Play intro video"
+                className="relative w-20 h-20 rounded-full bg-[#20497f] flex items-center justify-center shadow-[0_12px_30px_rgba(32,73,127,0.30)] hover:bg-[#1a3c6a] transition-colors duration-300"
+              >
+                <Play className="w-8 h-8 text-[#d9bd7a] ml-1" fill="currentColor" />
+              </button>
+              <p className="relative mt-5 text-[15px] font-semibold text-[#33455a]">Intro video</p>
+              <p className="relative mt-1 text-[13px] text-[#8593a3]">Coming soon</p>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
       {/* Bio */}
-      <section className="bg-white py-20 md:py-24">
+      <section className="bg-white py-16 md:py-20">
         <div className="max-w-7xl mx-auto px-5 sm:px-8 grid lg:grid-cols-5 gap-12 lg:gap-16 items-start">
           <Reveal className="lg:col-span-2">
             <div className="relative">

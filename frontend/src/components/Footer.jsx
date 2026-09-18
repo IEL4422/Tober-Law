@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Mail, MapPin, MessageSquare, Linkedin, Instagram, Facebook } from 'lucide-react';
+import { Mail, MapPin, Phone, Printer, Linkedin, Instagram, Facebook } from 'lucide-react';
 import { firm, practiceAreas } from '../mock';
 import logoWhite from '../assets/logo-white.png';
 
@@ -47,7 +47,7 @@ const Footer = () => {
               <li><Link to="/about" className="hover:text-white transition-colors">About Us</Link></li>
               <li><Link to="/results" className="hover:text-white transition-colors">Results</Link></li>
               <li><Link to="/blog" className="hover:text-white transition-colors">Blog</Link></li>
-              <li><Link to="/contact" className="hover:text-white transition-colors">Referral Partners</Link></li>
+              <li><Link to="/attorney-referrals" className="hover:text-white transition-colors">Attorney Referrals</Link></li>
               <li><Link to="/contact" className="hover:text-white transition-colors">Contact Us</Link></li>
             </ul>
           </div>
@@ -65,8 +65,12 @@ const Footer = () => {
                 <a href={`mailto:${firm.email}`} className="hover:text-white transition-colors">{firm.email}</a>
               </li>
               <li className="flex items-center gap-2.5">
-                <MessageSquare className="w-4 h-4 text-[#d9bd7a] shrink-0" />
-                <span>{firm.phoneNote}</span>
+                <Phone className="w-4 h-4 text-[#d9bd7a] shrink-0" />
+                <a href={firm.phoneHref} className="hover:text-white transition-colors">{firm.phone}</a>
+              </li>
+              <li className="flex items-center gap-2.5">
+                <Printer className="w-4 h-4 text-[#d9bd7a] shrink-0" />
+                <span>Fax {firm.fax}</span>
               </li>
             </ul>
           </div>

@@ -1,6 +1,7 @@
 // Mock content for Tober Law — all data lives here for easy backend swap later.
 import {
   Car, Truck, DoorOpen, HardHat, Factory, ShieldAlert, Landmark, Lock,
+  Package, Dog, Stethoscope,
 } from 'lucide-react';
 
 export const firm = {
@@ -9,16 +10,19 @@ export const firm = {
   tagline: 'You focus on healing. We handle the rest.',
   email: 'firm@tober-law.com',
   address: '125 S. Wacker Dr., Ste. 300, Chicago, IL 60606',
+  phone: '312-214-3175',
+  phoneHref: 'tel:+13122143175',
+  fax: '312-426-2131',
   phoneNote: 'Text or call anytime',
   blurb:
-    'Chicago personal injury & civil rights litigation, handled personally by Cameron J. Tober.',
+    'Illinois & Missouri personal injury and civil rights litigation, handled personally by Cameron J. Tober.',
 };
 
 export const badges = [
   { title: 'Trial-Tested', sub: 'Real courtroom experience' },
   { title: 'Direct Access', sub: "The attorney's personal cell" },
   { title: '$0 Upfront', sub: 'Contingency fee' },
-  { title: 'Chicagoland', sub: 'Serving all of Illinois' },
+  { title: 'IL & MO', sub: 'Serving Illinois & Missouri' },
 ];
 
 export const practiceAreas = [
@@ -53,6 +57,18 @@ export const practiceAreas = [
   {
     slug: 'negligent-security', name: 'Negligent Security', icon: Lock,
     desc: 'Assaults and harm enabled by inadequate property security.',
+  },
+  {
+    slug: 'products-liability', name: 'Products Liability', icon: Package,
+    desc: 'Injuries caused by defective, dangerous, or improperly designed products.',
+  },
+  {
+    slug: 'dog-bites', name: 'Dog Bites', icon: Dog,
+    desc: 'Serious dog-bite and animal-attack injuries caused by negligent owners.',
+  },
+  {
+    slug: 'medical-malpractice', name: 'Medical Malpractice & Nursing Home', icon: Stethoscope,
+    desc: 'Negligent medical care and nursing-home neglect that harms patients and residents.',
   },
 ];
 
@@ -169,5 +185,20 @@ export const practiceDetails = {
     overview: "Businesses and property owners must protect visitors from foreseeable harm. When inadequate security enables an assault or attack, we pursue the owners whose negligence made it possible.",
     handles: ['Assaults enabled by poor security', 'Inadequate lighting and broken locks', 'Failure to provide guards or cameras', 'Apartment and parking-lot attacks', 'Animal attacks on unsafe premises'],
     resultCategories: ['Negligent Security'],
+  },
+  'products-liability': {
+    overview: "When a defective or unreasonably dangerous product causes injury, the companies that designed, made, or sold it can be held responsible. We take on manufacturers and distributors to recover for people harmed by products that never should have reached the market.",
+    handles: ['Defective and dangerous consumer products', 'Design and manufacturing defects', 'Failure-to-warn and inadequate labeling', 'Defective machinery and equipment', 'Auto and component-part failures'],
+    resultCategories: ['Manufacturing Injury'],
+  },
+  'dog-bites': {
+    overview: "A serious dog bite can cause lasting physical and emotional scars, especially for children. Illinois and Missouri law hold owners accountable when their animals attack. We pursue full compensation for medical care, scarring, and trauma.",
+    handles: ['Dog-bite and mauling injuries', 'Attacks on children and delivery workers', 'Scarring and reconstructive surgery claims', 'Negligent and reckless owner liability', 'Attacks enabled by unsafe premises'],
+    resultCategories: ['Negligent Security'],
+  },
+  'medical-malpractice': {
+    overview: "When trusted medical providers and care facilities fall below the standard of care, the consequences can be devastating. We handle serious medical-malpractice and nursing-home neglect cases against hospitals, providers, and long-term care facilities.",
+    handles: ['Surgical and diagnostic errors', 'Medication and dosage mistakes', 'Birth injuries and delayed treatment', 'Nursing-home neglect and pressure injuries', 'Falls and abuse in care facilities'],
+    resultCategories: ['Medical Malpractice', 'Nursing Home Neglect'],
   },
 };

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { Mail, MapPin, MessageSquare, Clock, Paperclip, Send, CheckCircle2 } from 'lucide-react';
+import { Mail, MapPin, MessageSquare, Clock, Paperclip, Send, CheckCircle2, Printer, ArrowRight } from 'lucide-react';
 import { toast } from 'sonner';
 import { firm, hours, referralBlocks } from '../mock';
 import Reveal from '../components/Reveal';
@@ -81,12 +82,12 @@ const Contact = () => {
     <div>
       <Seo
         title={`Free Consultation | Contact ${firm.name}`}
-        description="Tell us about your case. Free, confidential consultation with Chicago injury and civil rights attorney Cameron J. Tober \u2014 no cost, no obligation. Text or call anytime."
+        description="Tell us about your case. Free, confidential consultation with Illinois & Missouri injury and civil rights attorney Cameron J. Tober \u2014 no cost, no obligation. Text or call anytime."
         path="/contact"
         jsonLd={contactJsonLd}
       />
       {/* Page hero */}
-      <section className="relative pt-[74px] bg-[#16304f] dot-texture overflow-hidden">
+      <section className="relative pt-[96px] bg-[#16304f] dot-texture overflow-hidden">
         <div className="absolute -top-24 -right-16 w-96 h-96 rounded-full bg-[#2e6fb0]/30 blur-3xl" />
         <div className="relative max-w-7xl mx-auto px-5 sm:px-8 py-20 md:py-24">
           <Reveal className="max-w-3xl">
@@ -180,7 +181,12 @@ const Contact = () => {
               <div className="rounded-2xl border border-[#e8eef5] p-5">
                 <MessageSquare className="w-5 h-5 text-[#b8933f]" />
                 <div className="mt-3 text-[12px] font-bold uppercase tracking-wider text-[#8593a3]">Text or call</div>
-                <div className="mt-1 text-[15px] font-semibold text-[#20497f]">{firm.phoneNote}</div>
+                <a href={firm.phoneHref} className="mt-1 block text-[15px] font-semibold text-[#20497f] hover:text-[#b8933f] transition-colors">{firm.phone}</a>
+              </div>
+              <div className="rounded-2xl border border-[#e8eef5] p-5">
+                <Printer className="w-5 h-5 text-[#b8933f]" />
+                <div className="mt-3 text-[12px] font-bold uppercase tracking-wider text-[#8593a3]">Fax</div>
+                <div className="mt-1 text-[15px] font-semibold text-[#33455a]">{firm.fax}</div>
               </div>
               <div className="rounded-2xl border border-[#e8eef5] p-5 sm:col-span-2">
                 <MapPin className="w-5 h-5 text-[#b8933f]" />
@@ -216,8 +222,15 @@ const Contact = () => {
               Referral Partners &amp; Litigation Solutions
             </h2>
             <p className="mt-5 text-lg text-white/70 leading-relaxed">
-              We welcome referrals and co-counsel relationships on serious injury and civil rights matters. Reach out to discuss.
+              We welcome referrals and co-counsel relationships on serious injury and civil rights matters across Illinois and Missouri. Reach out to discuss.
             </p>
+            <Link
+              to="/attorney-referrals"
+              className="group mt-6 inline-flex items-center gap-2 text-[15px] font-bold text-[#d9bd7a] hover:text-[#e8d29a] transition-colors"
+            >
+              Learn more about attorney referrals
+              <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+            </Link>
           </Reveal>
           <div className="mt-12 grid gap-6 md:grid-cols-3">
             {referralBlocks.map((b, i) => (

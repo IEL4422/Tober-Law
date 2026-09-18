@@ -18,7 +18,7 @@ const Home = () => {
       description: firm.blurb,
       url: 'https://tober-law.com/',
       email: firm.email,
-      areaServed: 'Chicago, Illinois',
+      areaServed: 'Illinois and Missouri',
       priceRange: 'Contingency fee \u2014 $0 upfront',
       address: {
         '@type': 'PostalAddress',
@@ -48,8 +48,8 @@ const Home = () => {
   return (
     <div>
       <Seo
-        title={`${firm.name} | Chicago Personal Injury & Civil Rights Attorney`}
-        description="Chicago personal injury and civil rights trial lawyer Cameron J. Tober. Serious injury litigation handled personally \u2014 $0 upfront, direct attorney access, serving all of Illinois."
+        title={`${firm.name} | Illinois & Missouri Personal Injury & Civil Rights Attorney`}
+        description="Illinois & Missouri personal injury and civil rights trial lawyer Cameron J. Tober. Serious injury litigation handled personally \u2014 $0 upfront, direct attorney access, serving Illinois and Missouri."
         path="/"
         jsonLd={homeJsonLd}
       />
@@ -68,12 +68,12 @@ const Home = () => {
 
         <div className="relative w-full max-w-7xl mx-auto px-5 sm:px-8 pt-24">
           <div className="max-w-xl bg-white/85 backdrop-blur-md rounded-2xl p-8 sm:p-11 shadow-[0_30px_80px_rgba(15,39,68,0.35)] border border-white/60">
-            <p className="eyebrow">Chicago Personal Injury &amp; Civil Rights</p>
+            <p className="eyebrow">Illinois &amp; Missouri Personal Injury &amp; Civil Rights</p>
             <h1 className="font-serif text-[#16304f] text-4xl sm:text-5xl lg:text-[3.4rem] font-semibold leading-[1.05] tracking-tight mt-4">
               You focus on healing. <span className="text-[#2e6fb0]">We handle the rest.</span>
             </h1>
             <p className="mt-5 text-[17px] text-[#3a4a5e] leading-relaxed">
-              Serious injury and civil rights litigation — handled personally by {firm.attorney}, never handed down.
+              Serious injury and civil rights litigation across Illinois and Missouri — handled personally by {firm.attorney}, never handed down.
             </p>
             <div className="mt-8 flex flex-col sm:flex-row gap-3">
               <button
@@ -116,7 +116,7 @@ const Home = () => {
             </h2>
             <div className="gold-rule mt-5" />
             <p className="mt-5 text-[17px] text-[#4a5a6d] leading-relaxed">
-              Focused, high-stakes injury and civil rights representation — handled personally by {firm.attorney}.
+              Focused, high-stakes injury and civil rights representation — handled personally by {firm.attorney}, serving Illinois and Missouri.
             </p>
           </Reveal>
 
